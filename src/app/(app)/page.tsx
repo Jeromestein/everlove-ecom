@@ -1,5 +1,9 @@
-import PageTemplate, { generateMetadata } from './[slug]/page'
+import React from 'react'
 
-export default PageTemplate
+import { HomePageClient } from './HomePageClient'
 
-export { generateMetadata }
+export { generateMetadata } from './[slug]/page'
+
+export default function HomePage() {
+  return <HomePageClient />
+}
