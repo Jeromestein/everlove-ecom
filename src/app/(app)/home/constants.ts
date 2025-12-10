@@ -7,24 +7,26 @@ export const NAV_ITEMS = [
 
 export const STORIES = [
   {
-    title: "Aisha's First Backpack",
-    location: 'Kenya',
+    title: "Ana's Journey to Stability",
+    location: 'Orange County, CA',
     image:
-      'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80',
-    description: 'With her new supplies, Aisha topped her class in science for the first time.',
+      '/domestic-violence.jpg',
+    description:
+      'After fleeing domestic violence with her two children, Ana used our support to secure a one-bedroom apartment. We are supplying essentials like a microwave and blender and, just as critically, connecting her kids to tutoring and school materials so they can keep learning in their new home.',
   },
   {
-    title: 'The Village Library',
-    location: 'Vietnam',
+    title: 'Supporting Youth in Foster Care',
+    location: 'Orange County, CA',
     image:
-      'https://images.unsplash.com/photo-1529390003361-507a236d32f5?auto=format&fit=crop&w=1200&q=80',
-    description: 'How 500 donated books transformed a community center into a hub of learning.',
+      '/Youth-in-Foster-Care.jpg',
+    description:
+      'Our three Short Term Residential homes provide specialized care for 18 youth (13–18) with significant trauma histories, offering stability, healing, and paths to long-term housing or family reunification. Each teen also receives tutoring, study support, and safe spaces to stay in school while they recover.',
   },
   {
     title: 'Tech for Tomorrow',
-    location: 'Brazil',
+    location: '',
     image:
-      'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=1200&q=80',
+      '/library-for-kids.webp',
     description: 'Introducing tablets to rural classrooms opened up a world of digital literacy.',
   },
 ]
@@ -46,6 +48,21 @@ export const MISSION_POINTS = [
   'Providing essential learning materials.',
   'Building safe learning environments.',
   'Supporting local teachers and mentors.',
+]
+
+export const PROJECTS = [
+  {
+    title: 'Rwanda Classroom Initiative',
+    description: 'Building a new school facility in rural Rwanda to provide education for 60+ children.',
+    image:
+      '/Education-as-a-Lifeline-Blog-Header-400x250.png',
+  },
+  {
+    title: 'Books & Supplies Program',
+    description: 'Providing essential learning materials to children in underserved communities.',
+    image:
+      '/kids-books.jpg',
+  },
 ]
 
 export const GALLERY = [

@@ -32,10 +32,12 @@ export function StoriesSection({ stories }: Props) {
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   src={story.image}
                 />
-                <div className="absolute left-4 top-4 z-20 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 backdrop-blur-sm">
-                  <MapPin className="h-3 w-3" />
-                  {story.location}
-                </div>
+                {story.location ? (
+                  <div className="absolute left-4 top-4 z-20 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 backdrop-blur-sm">
+                    <MapPin className="h-3 w-3" />
+                    {story.location}
+                  </div>
+                ) : null}
               </div>
               <h4 className="mb-2 text-2xl font-bold text-slate-900 transition-colors group-hover:text-[#eb3f69]">
                 {story.title}

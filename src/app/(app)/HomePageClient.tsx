@@ -8,8 +8,9 @@ import { HomePageHeroSection } from './home/components/HomePageHeroSection'
 import { ImpactStats, ImpactStatsSection } from './home/components/ImpactStatsSection'
 import { LearningCrisisSection } from './home/components/LearningCrisisSection'
 import { MissionSection } from './home/components/MissionSection'
+import { ProjectsSection } from './home/components/ProjectsSection'
 import { StoriesSection } from './home/components/StoriesSection'
-import { DONATION_TIERS, EVENTS, GALLERY, MISSION_POINTS, STORIES } from './home/constants'
+import { DONATION_TIERS, EVENTS, GALLERY, MISSION_POINTS, PROJECTS, STORIES } from './home/constants'
 
 export function HomePageClient() {
   const [impactStats, setImpactStats] = useState<ImpactStats>({
@@ -47,6 +48,7 @@ export function HomePageClient() {
       <ImpactStatsSection impactStats={impactStats} />
       <MissionSection gallery={GALLERY} points={MISSION_POINTS} />
       <StoriesSection stories={STORIES} />
+      <ProjectsSection projects={PROJECTS} />
       <EventsSection events={EVENTS} />
       <DonationSection tiers={DONATION_TIERS} />
     </div>
