@@ -26,7 +26,8 @@ function useAnimateNumber(from: number, to: number, duration = 2600, enabled = t
       }
 
       const progress = Math.min((timestamp - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
+      // Use linear progression for steadier movement
+      const eased = progress
 
       const next = from + delta * eased
       const bounded = delta < 0 ? Math.max(next, to) : Math.min(next, to)
@@ -71,8 +72,8 @@ export function LearningCrisisSection() {
     return () => observer.disconnect()
   }, [])
 
-  const lossValue = useAnimateNumber(0, LOSS_TARGET, 4200, hasEntered)
-  const literacyValue = useAnimateNumber(100, LITERACY_TARGET, 2000, hasEntered)
+  const lossValue = useAnimateNumber(0, LOSS_TARGET, 5200, hasEntered)
+  const literacyValue = useAnimateNumber(100, LITERACY_TARGET, 3200, hasEntered)
 
   const formattedLoss = useMemo(
     () =>
@@ -90,16 +91,22 @@ export function LearningCrisisSection() {
     [literacyValue],
   )
 
-  const lossRatio = Math.min(Math.max(lossValue / LOSS_TARGET, 0), 1)
+  const lossRatioRaw = lossValue / LOSS_TARGET
+  const lossRatio = Math.min(Math.max(lossRatioRaw, 0), 1)
+  const lossPercent = Number((lossRatio * 100).toFixed(2))
   const lossHue = 120 * (1 - lossRatio) // 120=green at 0, 0=red at target
   const lossColor = `hsl(${Math.max(lossHue, 0)} 78% 58%)`
+  const lossBarStyle: CSSProperties = {
+    width: `${lossPercent}%`,
+    background: `linear-gradient(90deg, hsl(${Math.max(lossHue, 0)} 78% 52%), hsl(${Math.max(lossHue - 20, 0)} 82% 50%))`,
+    boxShadow: `0 0 25px hsla(${Math.max(lossHue, 0)} 78% 52% / 0.35)`,
+  }
 
   const safeLiteracy = Math.max(Math.min(literacyValue, 100), 0)
-  const literacyPercentWidth = `${safeLiteracy}%`
   const literacyHue = 120 * (safeLiteracy / 100) // 120=green, 0=red
   const literacyColor = `hsl(${Math.max(literacyHue, 0)} 78% 58%)`
   const literacyBarStyle: CSSProperties = {
-    width: literacyPercentWidth,
+    width: `${safeLiteracy}%`,
     background: `linear-gradient(90deg, hsl(${Math.max(literacyHue, 0)} 78% 52%), hsl(${Math.max(
       literacyHue - 25,
       0,
@@ -107,11 +114,6 @@ export function LearningCrisisSection() {
     boxShadow: `0 0 25px hsla(${Math.max(literacyHue, 0)} 78% 52% / 0.35)`,
   }
 
-  const lossBarStyle: CSSProperties = {
-    width: `${(lossRatio * 100).toFixed(1)}%`,
-    background: `linear-gradient(90deg, hsl(${Math.max(lossHue, 0)} 78% 52%), hsl(${Math.max(lossHue - 20, 0)} 82% 50%))`,
-    boxShadow: `0 0 25px hsla(${Math.max(lossHue, 0)} 78% 52% / 0.35)`,
-  }
 
   return (
     <section ref={sectionRef} className="relative flex min-h-[100dvh] items-center overflow-hidden bg-slate-950 py-20 text-white">
@@ -187,8 +189,9 @@ export function LearningCrisisSection() {
                 dollars are lost every single year because children are not learning.
               </p>
             </div>
+            {/* Money Lossing Bar */}
             <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full rounded-full transition-[width] duration-700 ease-out" style={lossBarStyle} />
+              <div className="h-full rounded-full transition-[width] duration-150 ease-linear" style={lossBarStyle} />
             </div>
           </div>
 
@@ -216,8 +219,9 @@ export function LearningCrisisSection() {
                   <span>Reading readiness</span>
                   <span>{formattedLiteracy}%</span>
                 </div>
+                {/* Reading Readiness Bar */}
                 <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full rounded-full transition-[width] duration-700 ease-out" style={literacyBarStyle} />
+                  <div className="h-full rounded-full transition-[width] duration-150 ease-linear" style={literacyBarStyle} />
                 </div>
               </div>
             </div>
