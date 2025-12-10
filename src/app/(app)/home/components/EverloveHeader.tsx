@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Heart, Menu, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 import { NAV_ITEMS } from '../constants'
 
@@ -52,7 +52,7 @@ export function EverloveHeader() {
               fill="currentColor"
             />
           </span>
-          <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
+          <span className={`text-3xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
             Everlove
           </span>
         </button>
@@ -61,7 +61,7 @@ export function EverloveHeader() {
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-base font-medium transition-colors ${
                 isScrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white/90 hover:text-white'
               }`}
               onClick={() => scrollToSection(item.id)}
@@ -71,7 +71,7 @@ export function EverloveHeader() {
             </button>
           ))}
           <button
-            className="rounded-full bg-[#eb3f69] px-6 py-2.5 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
+            className="rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
             onClick={() => scrollToSection('donate')}
             type="button"
           >
@@ -94,7 +94,7 @@ export function EverloveHeader() {
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
-                className="text-left text-lg font-semibold"
+                className="text-left text-xl font-semibold"
                 onClick={() => scrollToSection(item.id)}
                 type="button"
               >
@@ -102,7 +102,7 @@ export function EverloveHeader() {
               </button>
             ))}
             <button
-              className="w-full rounded-lg bg-[#eb3f69] py-3 text-white font-bold"
+              className="w-full rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold"
               onClick={() => scrollToSection('donate')}
               type="button"
             >
