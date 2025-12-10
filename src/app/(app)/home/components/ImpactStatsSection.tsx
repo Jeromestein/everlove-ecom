@@ -22,7 +22,7 @@ export function ImpactStatsSection({ impactStats }: Props) {
             <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Our Reach in Numbers</h2>
           </div>
           <div className="flex items-center gap-2 text-slate-600 md:mt-0">
-            <span className="h-3 w-3 animate-pulse rounded-full bg-[#eb3f69]" />
+            <span className="h-3 w-3 animate-pulse rounded-full bg-emerald-500" />
             <span className="text-sm font-semibold">Live Data Syncing</span>
           </div>
         </div>
