@@ -108,7 +108,7 @@ export function LearningCrisisSection() {
   }
 
   const lossBarStyle: CSSProperties = {
-    width: `${Math.max(lossRatio * 100, 6)}%`,
+    width: `${(lossRatio * 100).toFixed(1)}%`,
     background: `linear-gradient(90deg, hsl(${Math.max(lossHue, 0)} 78% 52%), hsl(${Math.max(lossHue - 20, 0)} 82% 50%))`,
     boxShadow: `0 0 25px hsla(${Math.max(lossHue, 0)} 78% 52% / 0.35)`,
   }
