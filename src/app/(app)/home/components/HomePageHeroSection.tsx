@@ -21,7 +21,7 @@ export function HomePageHeroSection({ onDonateClick, onImpactClick }: Props) {
 
       <div className="container relative z-10 py-24">
         <div className="max-w-3xl space-y-6 text-white">
-          <div className="inline-block rounded-full bg-[#eb3f69]/90 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em]">
+          <div className="inline-block rounded-full text-center  bg-[#eb3f69]/90 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em]">
             Addressing Educational Inequality
           </div>
           <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl">
@@ -33,7 +33,7 @@ export function HomePageHeroSection({ onDonateClick, onImpactClick }: Props) {
           <p className="text-lg text-slate-100 sm:text-xl">
             In the regions where we work, every backpack and every book is a child&apos;s starting point to a better life.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               className="flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-100"
               onClick={onImpactClick}
