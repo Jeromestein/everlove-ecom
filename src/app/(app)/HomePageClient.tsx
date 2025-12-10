@@ -6,6 +6,7 @@ import { DonationSection } from './home/components/DonationSection'
 import { EventsSection } from './home/components/EventsSection'
 import { HomePageHeroSection } from './home/components/HomePageHeroSection'
 import { ImpactStats, ImpactStatsSection } from './home/components/ImpactStatsSection'
+import { LearningCrisisSection } from './home/components/LearningCrisisSection'
 import { MissionSection } from './home/components/MissionSection'
 import { StoriesSection } from './home/components/StoriesSection'
 import { DONATION_TIERS, EVENTS, GALLERY, MISSION_POINTS, STORIES } from './home/constants'
@@ -42,6 +43,7 @@ export function HomePageClient() {
   return (
     <div className="bg-white text-slate-900">
       <HomePageHeroSection onDonateClick={() => scrollToSection('donate')} onImpactClick={() => scrollToSection('impact')} />
+      <LearningCrisisSection />
       <ImpactStatsSection impactStats={impactStats} />
       <MissionSection gallery={GALLERY} points={MISSION_POINTS} />
       <StoriesSection stories={STORIES} />
