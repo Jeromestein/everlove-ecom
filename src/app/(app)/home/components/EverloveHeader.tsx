@@ -1,6 +1,7 @@
 'use client'
 
-import { Heart, Menu, X } from 'lucide-react'
+import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { NAV_ITEMS } from '../constants'
@@ -46,11 +47,12 @@ export function EverloveHeader() {
           }}
           type="button"
         >
-          <span className={`rounded-full p-2 ${isScrolled ? 'bg-[#eb3f69]' : 'bg-white/90'}`}>
-            <Heart
-              className={`h-6 w-6 ${isScrolled ? 'text-white' : 'text-[#eb3f69]'}`}
-              fill="currentColor"
-            />
+          <span
+            className={`flex items-center justify-center rounded-full p-1.5 shadow-sm ${
+              isScrolled ? 'bg-white' : 'bg-white/90'
+            }`}
+          >
+            <Image alt="Everlove logo" height={36} src="/icon1.png" width={36} priority />
           </span>
           <span className={`text-3xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
             Everlove

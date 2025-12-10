@@ -1,8 +1,8 @@
-# Payload Ecommerce Template
+# Everlove Charity Foundation - Payload Ecommerce Template
 
 This template is in **BETA**.
 
-This is the official [Payload Ecommerce Template](https://github.com/payloadcms/payload/blob/main/templates/ecommerce). This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready ecommerce website.
+This is based on the official [Payload Ecommerce Template](https://github.com/payloadcms/payload/blob/main/templates/ecommerce). This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready ecommerce website.
 
 This template is right for you if you are working on building an ecommerce project or shop with Payload.
 
@@ -16,14 +16,14 @@ Core features:
 - [Live Preview](#live-preview)
 - [On-demand Revalidation](#on-demand-revalidation)
 - [SEO](#seo)
-- [Search & Filters](#search)
+- [Search &amp; Filters](#search)
 - [Jobs and Scheduled Publishing](#jobs-and-scheduled-publish)
 - [Website](#website)
-- [Products & Variants](#products-and-variants)
+- [Products &amp; Variants](#products-and-variants)
 - [User accounts](#user-accounts)
 - [Carts](#carts)
 - [Guest checkout](#guests)
-- [Orders & Transactions](#orders-and-transactions)
+- [Orders &amp; Transactions](#orders-and-transactions)
 - [Stripe Payments](#stripe)
 - [Currencies](#currencies)
 - [Automated Tests](#tests)
@@ -45,9 +45,9 @@ pnpx create-payload-app my-project -t ecommerce
 ### Development
 
 1. First [clone the repo](#clone) if you have not done so already
-1. `cd my-project && cp .env.example .env` to copy the example environment variables
-1. `pnpm install && pnpm dev` to install dependencies and start the dev server
-1. open `http://localhost:3000` to open the app in your browser
+2. `cd my-project && cp .env.example .env` to copy the example environment variables
+3. `pnpm install && pnpm dev` to install dependencies and start the dev server
+4. open `http://localhost:3000` to open the app in your browser
 
 That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
 
@@ -181,7 +181,7 @@ By default the template ships with support only for USD however you can change t
 
 ## Stripe
 
-By default we ship with the Stripe adapter configured, so you'll need to setup the `secretKey`, `publishableKey` and `webhookSecret` from your Stripe dashboard. Follow [Stripe's guide](https://docs.stripe.com/get-started/api-request?locale=en-GB) on how to set this up.
+By default we ship with the Stripe adapter configured, so you'll need to setup the `secretKey`, `publishableKey` and `webhookSecret` from your Stripe dashboard. Follow [Stripe&#39;s guide](https://docs.stripe.com/get-started/api-request?locale=en-GB) on how to set this up.
 
 ## Tests
 
@@ -280,8 +280,8 @@ This command will check for any migrations that have not yet been run and try to
 Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
 
 1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+2. Next run `docker-compose up`
+3. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
 
 That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
 
@@ -302,8 +302,8 @@ The seed script will also create a demo user for demonstration purposes only:
 To run Payload in production, you need to build and start the Admin panel. To do so, follow these steps:
 
 1. Invoke the `next build` script by running `pnpm build` or `npm run build` in your project root. This creates a `.next` directory with a production-ready admin bundle.
-1. Finally run `pnpm start` or `npm run start` to run Node in production and serve Payload from the `.build` directory.
-1. When you're ready to go live, see Deployment below for more details.
+2. Finally run `pnpm start` or `npm run start` to run Node in production and serve Payload from the `.build` directory.
+3. When you're ready to go live, see Deployment below for more details.
 
 ### Deploying to Vercel
 
