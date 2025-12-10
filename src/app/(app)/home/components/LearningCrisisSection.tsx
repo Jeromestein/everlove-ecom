@@ -1,16 +1,21 @@
 'use client'
 
-import { type CSSProperties, useEffect, useMemo, useState } from 'react'
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 
 import { AlertTriangle, Flame, Gauge } from 'lucide-react'
 
 const LOSS_TARGET = 10_000_000_000_000
 const LITERACY_TARGET = 8
 
-function useAnimateNumber(from: number, to: number, duration = 2600) {
+function useAnimateNumber(from: number, to: number, duration = 2600, enabled = true) {
   const [value, setValue] = useState(from)
 
   useEffect(() => {
+    if (!enabled) {
+      setValue(from)
+      return
+    }
+
     let frame: number
     let start: number | null = null
     const delta = to - from
@@ -38,14 +43,36 @@ function useAnimateNumber(from: number, to: number, duration = 2600) {
     return () => {
       cancelAnimationFrame(frame)
     }
-  }, [duration, from, to])
+  }, [duration, enabled, from, to])
 
   return value
 }
 
 export function LearningCrisisSection() {
-  const lossValue = useAnimateNumber(0, LOSS_TARGET, 4200)
-  const literacyValue = useAnimateNumber(100, LITERACY_TARGET, 2000)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const [hasEntered, setHasEntered] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !sectionRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry.isIntersecting) {
+          setHasEntered(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(sectionRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
+  const lossValue = useAnimateNumber(0, LOSS_TARGET, 4200, hasEntered)
+  const literacyValue = useAnimateNumber(100, LITERACY_TARGET, 2000, hasEntered)
 
   const formattedLoss = useMemo(
     () =>
@@ -87,7 +114,7 @@ export function LearningCrisisSection() {
   }
 
   return (
-    <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-slate-950 py-20 text-white">
+    <section ref={sectionRef} className="relative flex min-h-[100dvh] items-center overflow-hidden bg-slate-950 py-20 text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-0 h-96 w-96 rounded-full bg-[#eb3f69]/30 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-cyan-500/20 blur-[120px]" />
