@@ -31,10 +31,10 @@ export function EverloveHeader() {
 
   return (
     <nav
-      className={`sticky top-0 z-40 transition-all duration-300 ${
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
           ? 'bg-white/90 py-3 shadow-lg backdrop-blur-xl'
-          : 'bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-transparent py-6'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="container flex items-center justify-between">
