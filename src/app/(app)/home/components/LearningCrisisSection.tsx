@@ -2,7 +2,7 @@
 
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 
-import { AlertTriangle, Flame, Gauge } from 'lucide-react'
+import { Flame, Gauge } from 'lucide-react'
 
 const LOSS_TARGET = 10_000_000_000_000
 const LITERACY_TARGET = 8
@@ -128,7 +128,7 @@ export function LearningCrisisSection() {
             The world is bleeding opportunity. Every year we let children fall behind, we burn through trillions.
           </h2>
           <p className="text-lg text-slate-200">
-            More than twelve zeros vanish annually because children aren&apos;t learning. At the same time, almost every child
+            More than <strong>13 ZEROS</strong> dollars vanish annually because children aren&apos;t learning. At the same time, almost every child
             in low-income countries starts adolescence without being able to read and understand a simple story. The cost is
             human and economic — and it is accelerating.
           </p>
@@ -168,7 +168,6 @@ export function LearningCrisisSection() {
           <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
             <div className="absolute inset-0 bg-gradient-to-br from-[#eb3f69]/10 via-transparent to-cyan-400/10 opacity-0 transition duration-500 group-hover:opacity-100" />
             <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
-              <span className="h-2 w-2 rounded-full bg-[#eb3f69] animate-pulse" />
               Lost every year
             </div>
             <div className="mt-6 space-y-2">
@@ -198,7 +197,6 @@ export function LearningCrisisSection() {
               <div className="h-full w-full bg-[radial-gradient(circle_at_20%_30%,rgba(235,63,105,0.4),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.35),transparent_40%)]" />
             </div>
             <div className="relative flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
-              <AlertTriangle className="h-4 w-4 text-cyan-200" />
               Literacy by age 10
             </div>
             <div className="relative z-10 mt-6 space-y-3">
