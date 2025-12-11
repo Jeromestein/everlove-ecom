@@ -34,8 +34,8 @@ export function EverloveHeader() {
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white py-3 shadow-lg backdrop-blur-xl'
-          : 'bg-transparent py-6'
+          ? 'py-3 shadow-lg backdrop-blur-xl border-b bg-background/95 supports-[backdrop-filter]:bg-background/60'
+          : 'py-6 bg-transparent '
       }`}
     >
       <div className="container flex items-center justify-between">
