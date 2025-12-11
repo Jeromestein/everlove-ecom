@@ -11,8 +11,8 @@ export function EverloveFooter() {
         <div className="mb-12 grid grid-cols-1 gap-12 border-b border-gray-800 pb-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-2">
-              <span className="rounded-full bg-white p-1.5 shadow-sm">
-                <EverloveLogo size={28} />
+              <span className="rounded-full p-1.5 shadow-sm">
+                <EverloveLogo size={64} />
               </span>
               <span className="text-2xl font-bold text-white">Everlove</span>
             </div>

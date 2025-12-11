@@ -48,9 +48,7 @@ export function EverloveHeader() {
           type="button"
         >
           <span
-            className={`flex items-center justify-center rounded-full p-1.5 ${
-              isScrolled ? 'bg-white' : 'bg-white/90'
-            }`}
+            className={`flex items-center justify-center rounded-full p-1.5 `}
           >
             <EverloveLogo size={64} priority />
           </span>
