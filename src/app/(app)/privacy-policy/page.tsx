@@ -127,10 +127,10 @@ export default function PrivacyPolicyPage() {
             {sections.map((section) => (
               <section key={section.title} className="space-y-3">
                 <h2 className="text-xl font-semibold text-gray-900">{section.title}</h2>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="list-none space-y-2 text-gray-700">
                   {section.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-[#eb3f69]" aria-hidden />
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 flex-none rounded-full bg-[#eb3f69]" aria-hidden />
                       <span>{item}</span>
                     </li>
                   ))}

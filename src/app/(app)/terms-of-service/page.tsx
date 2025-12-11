@@ -50,7 +50,7 @@ export default function TermsOfServicePage() {
             </Section>
 
             <Section title="Eligibility and acceptable use">
-              <ul className="space-y-2">
+              <ul className="list-none space-y-2">
                 <ListItem>You must be able to enter a binding agreement and use the site for lawful purposes only.</ListItem>
                 <ListItem>No disrupting services, probing security, scraping, or using the site to transmit harmful content.</ListItem>
                 <ListItem>Our services are not directed to children under 16.</ListItem>
@@ -58,7 +58,7 @@ export default function TermsOfServicePage() {
             </Section>
 
             <Section title="Donations and purchases">
-              <ul className="space-y-2">
+              <ul className="list-none space-y-2">
                 <ListItem>Provide accurate information so we can process your gift or order and issue receipts.</ListItem>
                 <ListItem>Prices and any applicable taxes or fees are shown at checkout for merchandise.</ListItem>
                 <ListItem>Digital receipts are delivered by email; shipping details are shared when available.</ListItem>
@@ -66,7 +66,7 @@ export default function TermsOfServicePage() {
             </Section>
 
             <Section title="Refunds and returns">
-              <ul className="space-y-2">
+              <ul className="list-none space-y-2">
                 <ListItem>Donations are generally non-refundable unless a transaction error occurred.</ListItem>
                 <ListItem>
                   Merchandise may be returned within 30 days of delivery if unused and in original condition. Contact us
@@ -77,14 +77,14 @@ export default function TermsOfServicePage() {
             </Section>
 
             <Section title="Shipping for commemorative items">
-              <ul className="space-y-2">
+              <ul className="list-none space-y-2">
                 <ListItem>Shipping estimates are provided at checkout; delivery times may vary due to carrier delays.</ListItem>
                 <ListItem>Risk of loss transfers to you upon delivery by the carrier unless required otherwise by law.</ListItem>
               </ul>
             </Section>
 
             <Section title="Accounts and communications">
-              <ul className="space-y-2">
+              <ul className="list-none space-y-2">
                 <ListItem>Keep account credentials secure; you are responsible for activity under your account.</ListItem>
                 <ListItem>We send service emails (receipts, order updates). Marketing emails are sent only with consent, and you can unsubscribe anytime.</ListItem>
               </ul>
@@ -148,8 +148,8 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 function ListItem({ children }: { children: ReactNode }) {
   return (
-    <li className="flex gap-3">
-      <span className="mt-2 h-2 w-2 rounded-full bg-[#eb3f69]" aria-hidden />
+    <li className="flex items-start gap-3">
+      <span className="mt-2 h-2 w-2 flex-none rounded-full bg-[#eb3f69]" aria-hidden />
       <span>{children}</span>
     </li>
   )
