@@ -12,7 +12,7 @@ export function EverloveFooter() {
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-2">
               <span className="rounded-full p-1.5 shadow-sm">
-                <EverloveLogo size={64} />
+                <EverloveLogo size={64}/>
               </span>
               <span className="text-2xl font-bold text-white">Everlove</span>
             </div>
