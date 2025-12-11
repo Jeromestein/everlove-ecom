@@ -21,20 +21,50 @@ const sanitizeText = (value: unknown, maxLength = 1200) => {
   return value.trim().slice(0, maxLength)
 }
 
-const buildEmailBody = (payload: Required<ContactRequestBody>, displayReason: string) => {
+const buildCombinedEmail = (
+  payload: Required<ContactRequestBody>,
+  displayReason: string,
+  fromAddress: string,
+  toAddress: string,
+) => {
   const safeMessage = payload.message.replace(/\n/g, '<br />')
-  return `
-    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
-      <h2>New message from Everlove website</h2>
-      <p><strong>Name:</strong> ${payload.firstName} ${payload.lastName}</p>
-      <p><strong>Email:</strong> ${payload.email}</p>
-      <p><strong>Reason:</strong> ${displayReason}</p>
-      <p><strong>Message:</strong></p>
-      <div style="padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
-        ${safeMessage}
+  return {
+    subject: `${displayReason} | Everlove Charity Foundation`,
+    html: `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
+        <h2>We received your message</h2>
+        <p>Hi ${payload.firstName},</p>
+        <p>Thanks for contacting Everlove Charity Foundation about <strong>${displayReason}</strong>. We&apos;ve included our team (${toAddress}) here so we can follow up quickly.</p>
+        <div style="margin-top: 12px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+          <p><strong>Name:</strong> ${payload.firstName} ${payload.lastName}</p>
+          <p><strong>Email:</strong> ${payload.email}</p>
+          <p><strong>Reason:</strong> ${displayReason}</p>
+        </div>
+        <p style="margin-top: 10px;"><strong>Your message:</strong></p>
+        <div style="margin-top: 4px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+          ${safeMessage}
+        </div>
+        <p style="margin-top: 16px;">Reply to this email if you need to add anything else.</p>
+        <p style="margin-top: 16px;">— Everlove Charity Foundation</p>
+        <p style="color: #64748b; font-size: 12px;">Sent from ${fromAddress}</p>
       </div>
-    </div>
-  `
+    `,
+    text: `Hi ${payload.firstName},
+
+Thanks for contacting Everlove Charity Foundation about: ${displayReason}.
+We've included our team (${toAddress}) here so we can follow up quickly.
+
+Name: ${payload.firstName} ${payload.lastName}
+Email: ${payload.email}
+Reason: ${displayReason}
+
+${payload.message}
+
+If you need to add anything, reply directly to this email.
+
+— Everlove Charity Foundation
+Sent from ${fromAddress}`,
+  }
 }
 
 export async function POST(request: Request) {
@@ -66,18 +96,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
   }
 
-  const emailContent = {
-    from: fromAddress,
-    to: [toAddress],
-    reply_to: payload.email,
-    subject: `New message about: ${REASON_LABELS[payload.reason] ?? payload.reason}`,
-    html: buildEmailBody(payload as Required<ContactRequestBody>, REASON_LABELS[payload.reason] ?? payload.reason),
-    text: `Name: ${payload.firstName} ${payload.lastName}
-Email: ${payload.email}
-Reason: ${REASON_LABELS[payload.reason] ?? payload.reason}
+  const displayReason = REASON_LABELS[payload.reason] ?? payload.reason
+  const combinedEmail = buildCombinedEmail(payload as Required<ContactRequestBody>, displayReason, fromAddress, toAddress)
 
-${payload.message}`,
-  }
+  const recipients = Array.from(new Set([payload.email, toAddress])).filter(Boolean)
+  const ccRecipients = [fromAddress].filter((addr) => addr && !recipients.includes(addr))
 
   const resendResponse = await fetch(RESEND_ENDPOINT, {
     method: 'POST',
@@ -85,7 +108,15 @@ ${payload.message}`,
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(emailContent),
+    body: JSON.stringify({
+      from: fromAddress,
+      to: recipients,
+      cc: ccRecipients,
+      reply_to: payload.email,
+      subject: combinedEmail.subject,
+      html: combinedEmail.html,
+      text: combinedEmail.text,
+    }),
   })
 
   if (!resendResponse.ok) {
