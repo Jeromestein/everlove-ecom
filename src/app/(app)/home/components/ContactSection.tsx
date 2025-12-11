@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail, Send, Sparkles } from 'lucide-react'
+import { HandHeart, Mail, MessageCircle, Send, Sparkles, Users, Wand2 } from 'lucide-react'
 import Link from 'next/link'
 import { type ChangeEvent, type FormEvent, useMemo, useState } from 'react'
 
@@ -88,6 +88,12 @@ export function ContactSection() {
   }
 
   const isSubmitting = status === 'submitting'
+  const reasonIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    general: MessageCircle,
+    donation: HandHeart,
+    volunteer: Users,
+    other: Wand2,
+  }
 
   return (
     <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-24" id="contact">
@@ -183,6 +189,7 @@ export function ContactSection() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {CONTACT_REASONS.map((reason) => {
                   const isChecked = formData.reason === reason.value
+                  const Icon = reasonIcons[reason.value] ?? Sparkles
                   return (
                     <label
                       className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 text-sm shadow-sm transition ${
@@ -201,7 +208,10 @@ export function ContactSection() {
                         type="radio"
                         value={reason.value}
                       />
-                      <span className="text-slate-800">{reason.label}</span>
+                      <span className="flex items-center gap-2 text-slate-800">
+                        <Icon className="h-4 w-4 text-[#eb3f69]" />
+                        {reason.label}
+                      </span>
                     </label>
                   )
                 })}
