@@ -1,10 +1,16 @@
 'use client'
 
 import { Menu, X } from 'lucide-react'
+import { Outfit } from 'next/font/google'
 import { useEffect, useState } from 'react'
 
 import { NAV_ITEMS } from '../constants'
 import { EverloveLogo } from './EverloveLogo'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+})
 
 export function EverloveHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -52,11 +58,16 @@ export function EverloveHeader() {
           <span
             className={`flex items-center justify-center rounded-full p-1.5 `}
           >
-            <EverloveLogo size={56} priority />
+            <EverloveLogo size={64} priority />
           </span>
-          <span className={`text-3xl font-bold tracking-tight ${hasBackground ? 'text-slate-900' : 'text-white'}`}>
-            Everlove
-          </span>
+          <div className="flex flex-col text-left">
+            <span className={`${outfit.className} text-2xl font-bold leading-tight ${hasBackground ? 'text-slate-900' : 'text-white'}`}>
+              Everlove
+            </span>
+            <span className={`${outfit.className} text-sm text-muted-foreground tracking-wide ${hasBackground ? 'text-slate-900' : 'text-white'}`}>
+              CHARITY FOUNDATION
+            </span>
+          </div>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">

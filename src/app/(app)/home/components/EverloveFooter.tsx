@@ -1,8 +1,14 @@
 'use client'
 
 import { Globe } from 'lucide-react'
+import { Outfit } from 'next/font/google'
 
 import { EverloveLogo } from './EverloveLogo'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+})
 
 export function EverloveFooter() {
   return (
@@ -11,10 +17,11 @@ export function EverloveFooter() {
         <div className="mb-12 grid grid-cols-1 gap-12 border-b border-gray-800 pb-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-2">
-              <span className="rounded-full p-1.5 shadow-sm">
-                <EverloveLogo size={64}/>
-              </span>
-              <span className="text-2xl font-bold text-white">Everlove</span>
+              <EverloveLogo size={64}/>
+              <div className="flex flex-col text-left">
+                <span className={`${outfit.className} text-2xl font-bold leading-tight`}>Everlove</span>
+                <span className={`${outfit.className} text-sm text-muted-foreground tracking-wide`}>CHARITY FOUNDATION</span>
+              </div>
             </div>
             <p className="mb-6 max-w-md text-gray-400">
               Dedicated to addressing global educational inequality. We believe education is the most powerful weapon
