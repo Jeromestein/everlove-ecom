@@ -108,6 +108,17 @@ export function EverloveHeader() {
             </Link>
           ))}
           <Link
+            className={`text-base font-medium transition-colors ${
+              hasBackground ? 'text-slate-700' : 'text-white/90'
+            }`}
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className="underline-offset-4 decoration-2 transition-colors hover:text-[#eb3f69] hover:underline hover:decoration-[#eb3f69]">
+              Contact
+            </span>
+          </Link>
+          <Link
             className="inline-flex items-center justify-center rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
             href="/#donate"
             onClick={(event) => {
@@ -151,6 +162,13 @@ export function EverloveHeader() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              className="text-center tracking-wide text-lg font-semibold text-slate-800"
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </Link>
             <Link
               className="w-full inline-flex items-center justify-center rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold shadow-lg shadow-[#eb3f69]/20"
               href="/#donate"

@@ -61,11 +61,16 @@ export function EverloveFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link className="transition hover:text-[#eb3f69]" href="/contact">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-6 font-bold text-white">Contact</h4>
+            <h4 className="mb-6 font-bold text-white">Stay Connected</h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-[#eb3f69]" />
