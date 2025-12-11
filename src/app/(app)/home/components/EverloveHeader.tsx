@@ -120,11 +120,8 @@ export function EverloveHeader() {
           </Link>
           <Link
             className="inline-flex items-center justify-center rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
-            href="/#donate"
-            onClick={(event) => {
-              event.preventDefault()
-              scrollToSection('donate')
-            }}
+            href="/donate"
+            onClick={() => setMobileMenuOpen(false)}
           >
             Donate Now
           </Link>
@@ -171,11 +168,8 @@ export function EverloveHeader() {
             </Link>
             <Link
               className="w-full inline-flex items-center justify-center rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold shadow-lg shadow-[#eb3f69]/20"
-              href="/#donate"
-              onClick={(event) => {
-                event.preventDefault()
-                scrollToSection('donate')
-              }}
+              href="/donate"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Donate Now
             </Link>

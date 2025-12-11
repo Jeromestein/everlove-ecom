@@ -1,6 +1,7 @@
 'use client'
 
 import { Heart } from 'lucide-react'
+import Link from 'next/link'
 
 export type DonationTier = {
   amount: string
@@ -35,9 +36,12 @@ export function DonationSection({ tiers }: Props) {
           ))}
         </div>
 
-        <button className="rounded-full bg-white px-12 py-4 text-lg font-bold text-[#eb3f69] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl" type="button">
+        <Link
+          className="rounded-full bg-white px-12 py-4 text-lg font-bold text-[#eb3f69] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+          href="/donate"
+        >
           Proceed to Donate
-        </button>
+        </Link>
       </div>
     </section>
   )
