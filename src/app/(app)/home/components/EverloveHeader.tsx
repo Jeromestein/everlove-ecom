@@ -34,7 +34,7 @@ export function EverloveHeader() {
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'py-3 shadow-lg backdrop-blur-xl border-b bg-background/95 supports-[backdrop-filter]:bg-background/60'
+          ? 'py-3 shadow-lg backdrop-blur-xl bg-background/95 supports-[backdrop-filter]:bg-background/60'
           : 'py-6 bg-transparent '
       }`}
     >
@@ -91,7 +91,7 @@ export function EverloveHeader() {
       </div>
 
       {mobileMenuOpen ? (
-        <div className="mt-4 border-t border-white/20 bg-white px-6 py-4 text-slate-900 md:hidden">
+        <div className="mt-4 px-6 py-4 text-slate-900 md:hidden">
           <div className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <button
