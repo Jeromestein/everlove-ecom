@@ -10,6 +10,8 @@ export function EverloveHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const hasBackground = isScrolled || mobileMenuOpen
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
 
@@ -33,9 +35,9 @@ export function EverloveHeader() {
   return (
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? 'py-3 shadow-lg backdrop-blur-xl bg-background/95 supports-[backdrop-filter]:bg-background/60'
-          : 'py-6 bg-transparent '
+        hasBackground
+          ? 'py-3 shadow-lg backdrop-blur-xl bg-white/80 supports-[backdrop-filter]:bg-white/60'
+          : 'py-6 bg-transparent'
       }`}
     >
       <div className="container flex items-center justify-between">
@@ -52,7 +54,7 @@ export function EverloveHeader() {
           >
             <EverloveLogo size={56} priority />
           </span>
-          <span className={`text-3xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
+          <span className={`text-3xl font-bold tracking-tight ${hasBackground ? 'text-slate-900' : 'text-white'}`}>
             Everlove
           </span>
         </button>
@@ -62,7 +64,7 @@ export function EverloveHeader() {
             <button
               key={item.id}
               className={`text-base font-medium transition-colors ${
-                isScrolled ? 'text-slate-700' : 'text-white/90'
+                hasBackground ? 'text-slate-700' : 'text-white/90'
               }`}
               onClick={() => scrollToSection(item.id)}
               type="button"
@@ -83,20 +85,20 @@ export function EverloveHeader() {
 
         <button className="md:hidden" onClick={() => setMobileMenuOpen((prev) => !prev)} type="button">
           {mobileMenuOpen ? (
-            <X className={isScrolled ? 'text-slate-900' : 'text-white'} />
+            <X className={hasBackground ? 'text-slate-900' : 'text-white'} />
           ) : (
-            <Menu className={isScrolled ? 'text-slate-900' : 'text-white'} />
+            <Menu className={hasBackground ? 'text-slate-900' : 'text-white'} />
           )}
         </button>
       </div>
 
       {mobileMenuOpen ? (
-        <div className="mt-4 px-6 py-4 text-slate-900 md:hidden">
+        <div className="mt-4 px-4 text-slate-900 md:hidden">
           <div className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
-                className="text-center tracking-wide text-xl font-semibold"
+                className="text-center tracking-wide text-lg font-semibold text-slate-800"
                 onClick={() => scrollToSection(item.id)}
                 type="button"
               >
@@ -104,7 +106,7 @@ export function EverloveHeader() {
               </button>
             ))}
             <button
-              className="w-full rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold"
+              className="w-full rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold shadow-lg shadow-[#eb3f69]/20"
               onClick={() => scrollToSection('donate')}
               type="button"
             >
