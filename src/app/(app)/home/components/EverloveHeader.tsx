@@ -34,7 +34,7 @@ export function EverloveHeader() {
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 py-3 shadow-lg backdrop-blur-xl'
+          ? 'bg-white py-3 shadow-lg backdrop-blur-xl'
           : 'bg-transparent py-6'
       }`}
     >
@@ -50,18 +50,18 @@ export function EverloveHeader() {
           <span
             className={`flex items-center justify-center rounded-full p-1.5 `}
           >
-            <EverloveLogo size={64} priority />
+            <EverloveLogo size={56} priority />
           </span>
           <span className={`text-3xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
             Everlove
           </span>
         </button>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden flex-1 items-center justify-center gap-10 md:flex">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
-              className={`text-base font-medium transition-colors ${
+              className={`text-base font-medium tracking-wide transition-colors ${
                 isScrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white/90 hover:text-white'
               }`}
               onClick={() => scrollToSection(item.id)}
@@ -89,7 +89,7 @@ export function EverloveHeader() {
       </div>
 
       {mobileMenuOpen ? (
-        <div className="mt-4 border-t border-white/20 bg-white/95 px-6 py-4 text-slate-900 shadow-xl md:hidden">
+        <div className="mt-4 border-t border-white/20 bg-white px-6 py-4 text-slate-900 md:hidden">
           <div className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <button
