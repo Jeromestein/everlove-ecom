@@ -69,3 +69,10 @@ export const GALLERY = [
   'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
   'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80',
 ]
+
+export const CONTACT_REASONS = [
+  { value: 'general', label: 'General question' },
+  { value: 'donation', label: 'Donation or partnership' },
+  { value: 'volunteer', label: 'Volunteer' },
+  { value: 'other', label: 'Other' },
+]

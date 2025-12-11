@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { DonationSection } from './home/components/DonationSection'
 import { EventsSection } from './home/components/EventsSection'
+import { ContactSection } from './home/components/ContactSection'
 import { HomePageHeroSection } from './home/components/HomePageHeroSection'
 import { ImpactStats, ImpactStatsSection } from './home/components/ImpactStatsSection'
 import { LearningCrisisSection } from './home/components/LearningCrisisSection'
@@ -50,6 +51,7 @@ export function HomePageClient() {
       <StoriesSection stories={STORIES} />
       <ProjectsSection projects={PROJECTS} />
       <EventsSection events={EVENTS} />
+      <ContactSection />
       <DonationSection tiers={DONATION_TIERS} />
     </div>
   )
