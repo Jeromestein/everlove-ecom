@@ -11,19 +11,38 @@ const updatedOn = 'March 2025'
 
 export default function TermsOfServicePage() {
   return (
-    <div className="bg-white py-10 lg:py-16">
-      <div className="container pb-20 pt-16 lg:pb-28 lg:pt-20">
-        <div className="max-w-4xl space-y-12">
-          <header className="space-y-4 border-b border-gray-200 pb-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#eb3f69]">Terms of Service</p>
-            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl">Using our site responsibly</h1>
-            <p className="text-gray-600">
-              These terms explain how you may use Everlove Charity Foundation&apos;s website, make online donations, and
-              purchase commemorative merchandise. By using the site, you agree to these terms.
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-slate-900 text-white py-10 lg:py-16 ">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-8%] top-[-12%] h-56 w-56 rounded-full bg-[#eb3f69]/15 blur-3xl" />
+          <div className="absolute right-[-10%] bottom-[-20%] h-64 w-64 rounded-full bg-cyan-400/15 blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-slate-800/70" />
+        </div>
+        <div className="container relative z-10 py-16 lg:py-20">
+          <div className="max-w-3xl space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white ring-1 ring-white/20">
+              Terms of Service
+            </div>
+            <h1 className="text-4xl font-bold leading-[1.1] sm:text-5xl">Using our site responsibly.</h1>
+            <p className="text-lg text-slate-100">
+              How to use Everlove Charity Foundation&apos;s website, make donations, and purchase commemorative
+              merchandise in a way that keeps everyone safe and informed.
             </p>
-            <p className="text-sm text-gray-500">Updated: {updatedOn}</p>
-          </header>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-200">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 ring-1 ring-white/20">
+                Updated: {updatedOn}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 ring-1 ring-white/10">
+                California, USA jurisdiction
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div className="container pb-20 pt-12 lg:pb-28 lg:pt-16">
+        <div className="max-w-4xl space-y-12">
           <div className="space-y-10 text-gray-700">
             <Section title="Who we are">
               Everlove Charity Foundation is a nonprofit organization dedicated to advancing educational opportunity. For

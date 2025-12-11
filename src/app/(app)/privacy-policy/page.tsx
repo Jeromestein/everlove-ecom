@@ -91,20 +91,38 @@ const contactDetails = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-white py-10 lg:py-16">
-      <div className="container pb-20 pt-16 lg:pb-28 lg:pt-20">
-        <div className="max-w-4xl space-y-12">
-          <header className="space-y-4 border-b border-gray-200 pb-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#eb3f69]">Privacy Policy</p>
-            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl">Protecting your trust</h1>
-            <p className="text-gray-600">
-              Everlove Charity Foundation is a nonprofit organization. We collect personal information to process online
-              donations, deliver commemorative merchandise, and share updates about our mission. This notice explains
-              what we collect, how we use it, and the choices available to you.
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-slate-900 text-white py-10 lg:py-16 ">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-8%] top-[-10%] h-56 w-56 rounded-full bg-[#eb3f69]/15 blur-3xl" />
+          <div className="absolute right-[-12%] bottom-[-20%] h-64 w-64 rounded-full bg-cyan-400/15 blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-slate-800/70" />
+        </div>
+        <div className="container relative z-10 py-16 lg:py-20">
+          <div className="max-w-3xl space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white ring-1 ring-white/20">
+              Privacy Policy
+            </div>
+            <h1 className="text-4xl font-bold leading-[1.1] sm:text-5xl">Protecting your trust.</h1>
+            <p className="text-lg text-slate-100">
+              How we collect, use, and safeguard your information when you donate, shop for commemorative items, or stay
+              connected with Everlove Charity Foundation.
             </p>
-            <p className="text-sm text-gray-500">Updated: {updatedOn}</p>
-          </header>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-200">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 ring-1 ring-white/20">
+                Updated: {updatedOn}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 ring-1 ring-white/10">
+                We don&apos;t sell personal data
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div className="container pb-20 pt-12 lg:pb-28 lg:pt-16">
+        <div className="max-w-4xl space-y-12">
           <div className="space-y-10">
             {sections.map((section) => (
               <section key={section.title} className="space-y-3">
