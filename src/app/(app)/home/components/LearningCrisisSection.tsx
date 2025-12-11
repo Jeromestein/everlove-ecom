@@ -97,7 +97,9 @@ export function LearningCrisisSection() {
   const lossHue = 120 * (1 - lossRatio) // 120=green at 0, 0=red at target
   const lossColor = `hsl(${Math.max(lossHue, 0)} 78% 58%)`
   const lossBarStyle: CSSProperties = {
-    width: `${lossPercent}%`,
+    width: '100%',
+    transform: `scaleX(${lossPercent / 100})`,
+    transformOrigin: 'left center',
     background: `linear-gradient(90deg, hsl(${Math.max(lossHue, 0)} 78% 52%), hsl(${Math.max(lossHue - 20, 0)} 82% 50%))`,
     boxShadow: `0 0 25px hsla(${Math.max(lossHue, 0)} 78% 52% / 0.35)`,
   }
@@ -106,7 +108,9 @@ export function LearningCrisisSection() {
   const literacyHue = 120 * (safeLiteracy / 100) // 120=green, 0=red
   const literacyColor = `hsl(${Math.max(literacyHue, 0)} 78% 58%)`
   const literacyBarStyle: CSSProperties = {
-    width: `${safeLiteracy}%`,
+    width: '100%',
+    transform: `scaleX(${safeLiteracy / 100})`,
+    transformOrigin: 'left center',
     background: `linear-gradient(90deg, hsl(${Math.max(literacyHue, 0)} 78% 52%), hsl(${Math.max(
       literacyHue - 25,
       0,
@@ -191,7 +195,7 @@ export function LearningCrisisSection() {
             </div>
             {/* Money Lossing Bar */}
             <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full rounded-full transition-[width] duration-150 ease-linear" style={lossBarStyle} />
+              <div className="h-full rounded-full transition-transform duration-200 ease-linear" style={lossBarStyle} />
             </div>
           </div>
 
@@ -221,7 +225,7 @@ export function LearningCrisisSection() {
                 </div>
                 {/* Reading Readiness Bar */}
                 <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full rounded-full transition-[width] duration-150 ease-linear" style={literacyBarStyle} />
+                  <div className="h-full rounded-full transition-transform duration-200 ease-linear" style={literacyBarStyle} />
                 </div>
               </div>
             </div>
