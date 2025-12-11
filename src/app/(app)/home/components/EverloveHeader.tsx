@@ -57,11 +57,11 @@ export function EverloveHeader() {
           </span>
         </button>
 
-        <div className="hidden flex-1 items-center justify-center gap-10 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
-              className={`text-base font-medium tracking-wide transition-colors ${
+              className={`text-base font-medium transition-colors ${
                 isScrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white/90 hover:text-white'
               }`}
               onClick={() => scrollToSection(item.id)}
@@ -94,7 +94,7 @@ export function EverloveHeader() {
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
-                className="text-left text-xl font-semibold"
+                className="text-center tracking-wide text-xl font-semibold"
                 onClick={() => scrollToSection(item.id)}
                 type="button"
               >
