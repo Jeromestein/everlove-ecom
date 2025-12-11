@@ -1,8 +1,8 @@
 'use client'
 
-import { Globe } from 'lucide-react'
 import { Outfit } from 'next/font/google'
 
+import { NAV_ITEMS } from '../constants'
 import { EverloveLogo } from './EverloveLogo'
 
 const outfit = Outfit({
@@ -11,6 +11,15 @@ const outfit = Outfit({
 })
 
 export function EverloveFooter() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      window.location.href = `/#${id}`
+    }
+  }
+
   return (
     <section className="bg-gray-900 py-16 text-gray-300">
       <div className="container">
@@ -27,7 +36,13 @@ export function EverloveFooter() {
               Dedicated to addressing global educational inequality. We believe education is the most powerful weapon
               which you can use to change the world.
             </p>
-            <div className="flex gap-4">
+            <p className="mb-6 max-w-xl text-sm text-gray-400">
+              Everlove Charity Foundation is a 501(c)3 tax-exempt organization (ID: 33-4447023), and your donation is tax
+              deductible within the guidelines of U.S. law. Please keep your receipt as your official record. We&apos;ll email it
+              to you upon successful completion of your donation.
+            </p>
+            {/* Social Media Links */}
+            {/* <div className="flex gap-4">
               {[1, 2, 3, 4].map((item) => (
                 <span
                   className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-800 transition hover:bg-[#eb3f69]"
@@ -36,17 +51,21 @@ export function EverloveFooter() {
                   <Globe className="h-5 w-5" />
                 </span>
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div>
             <h4 className="mb-6 font-bold text-white">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              {['Our Story', 'Financials', 'Careers', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a className="transition hover:text-[#eb3f69]" href="#">
-                    {link}
-                  </a>
+              {NAV_ITEMS.map((item) => (
+                <li key={item.id}>
+                  <button
+                    className="transition hover:text-[#eb3f69]"
+                    onClick={() => scrollToSection(item.id)}
+                    type="button"
+                  >
+                    {item.label}
+                  </button>
                 </li>
               ))}
             </ul>
