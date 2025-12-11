@@ -2,6 +2,7 @@
 
 import { Menu, X } from 'lucide-react'
 import { Outfit } from 'next/font/google'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { NAV_ITEMS } from '../constants'
@@ -28,6 +29,12 @@ export function EverloveHeader() {
   }, [])
 
   const scrollToSection = (id: string) => {
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      setMobileMenuOpen(false)
+      return
+    }
+
     const element = document.getElementById(id)
 
     if (element) {
@@ -71,27 +78,45 @@ export function EverloveHeader() {
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
+          <Link
+            key="home"
+            className={`text-base font-medium transition-colors ${
+              hasBackground ? 'text-slate-700' : 'text-white/90'
+            }`}
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className="underline-offset-4 decoration-2 transition-colors hover:text-[#eb3f69] hover:underline hover:decoration-[#eb3f69]">
+              Home
+            </span>
+          </Link>
           {NAV_ITEMS.map((item) => (
-            <button
+            <Link
               key={item.id}
               className={`text-base font-medium transition-colors ${
                 hasBackground ? 'text-slate-700' : 'text-white/90'
               }`}
-              onClick={() => scrollToSection(item.id)}
-              type="button"
+              href={`/#${item.id}`}
+              onClick={(event) => {
+                event.preventDefault()
+                scrollToSection(item.id)
+              }}
             >
               <span className="underline-offset-4 decoration-2 transition-colors hover:text-[#eb3f69] hover:underline hover:decoration-[#eb3f69]">
                 {item.label}
               </span>
-            </button>
+            </Link>
           ))}
-          <button
-            className="rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
-            onClick={() => scrollToSection('donate')}
-            type="button"
+          <Link
+            className="inline-flex items-center justify-center rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
+            href="/#donate"
+            onClick={(event) => {
+              event.preventDefault()
+              scrollToSection('donate')
+            }}
           >
             Donate Now
-          </button>
+          </Link>
         </div>
 
         <button className="md:hidden" onClick={() => setMobileMenuOpen((prev) => !prev)} type="button">
@@ -106,23 +131,36 @@ export function EverloveHeader() {
       {mobileMenuOpen ? (
         <div className="mt-4 px-4 text-slate-900 md:hidden">
           <div className="flex flex-col gap-4">
+            <Link
+              className="text-center tracking-wide text-lg font-semibold text-slate-800"
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
             {NAV_ITEMS.map((item) => (
-              <button
+              <Link
                 key={item.id}
                 className="text-center tracking-wide text-lg font-semibold text-slate-800"
-                onClick={() => scrollToSection(item.id)}
-                type="button"
+                href={`/#${item.id}`}
+                onClick={(event) => {
+                  event.preventDefault()
+                  scrollToSection(item.id)
+                }}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
-            <button
-              className="w-full rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold shadow-lg shadow-[#eb3f69]/20"
-              onClick={() => scrollToSection('donate')}
-              type="button"
+            <Link
+              className="w-full inline-flex items-center justify-center rounded-lg bg-[#eb3f69] py-3 text-lg text-white font-bold shadow-lg shadow-[#eb3f69]/20"
+              href="/#donate"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollToSection('donate')
+              }}
             >
               Donate Now
-            </button>
+            </Link>
           </div>
         </div>
       ) : null}
