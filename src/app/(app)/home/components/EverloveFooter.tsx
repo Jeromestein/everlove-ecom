@@ -49,13 +49,16 @@ export function EverloveFooter() {
             <ul className="space-y-3 text-sm">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
-                  <button
+                  <Link
                     className="transition hover:text-[#eb3f69]"
-                    onClick={() => scrollToSection(item.id)}
-                    type="button"
+                    href={`/#${item.id}`}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      scrollToSection(item.id)
+                    }}
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
