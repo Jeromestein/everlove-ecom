@@ -1,10 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { NAV_ITEMS } from '../constants'
+import { EverloveLogo } from './EverloveLogo'
 
 export function EverloveHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -48,11 +48,11 @@ export function EverloveHeader() {
           type="button"
         >
           <span
-            className={`flex items-center justify-center rounded-full p-1.5 shadow-sm ${
+            className={`flex items-center justify-center rounded-full p-1.5 ${
               isScrolled ? 'bg-white' : 'bg-white/90'
             }`}
           >
-            <Image alt="Everlove logo" height={36} src="/icon1.png" width={36} priority />
+            <EverloveLogo size={64} priority />
           </span>
           <span className={`text-3xl font-bold tracking-tight ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
             Everlove
