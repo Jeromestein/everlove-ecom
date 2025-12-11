@@ -3,7 +3,6 @@
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import { Button } from '@payloadcms/ui'
 import { NAV_ITEMS } from '../constants'
 import { EverloveLogo } from './EverloveLogo'
 
@@ -73,13 +72,13 @@ export function EverloveHeader() {
               </span>
             </button>
           ))}
-          <Button
+          <button
             className="rounded-full bg-[#eb3f69] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c22e53]"
             onClick={() => scrollToSection('donate')}
             type="button"
           >
             Donate Now
-          </Button>
+          </button>
         </div>
 
         <button className="md:hidden" onClick={() => setMobileMenuOpen((prev) => !prev)} type="button">
