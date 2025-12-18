@@ -13,6 +13,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const oneTimeAmounts = [25, 50, 100, 250]
 const monthlyAmounts = [15, 30, 60, 120]
@@ -67,6 +68,7 @@ function formatAmount(amount: number, currency: string) {
 }
 
 export function DonatePageClient() {
+  const searchParams = useSearchParams()
   const [frequency, setFrequency] = useState<'once' | 'monthly'>('once')
   const [selectedAmount, setSelectedAmount] = useState(100)
   const [customAmount, setCustomAmount] = useState('')
@@ -74,6 +76,8 @@ export function DonatePageClient() {
   const [dedicate, setDedicate] = useState(false)
   const [honorName, setHonorName] = useState('')
   const [helperMessage, setHelperMessage] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     setSelectedAmount(frequency === 'once' ? 100 : 30)
@@ -93,9 +97,45 @@ export function DonatePageClient() {
     return "Gets notebooks, pencils, and first books into a student's hands."
   }, [donationAmount])
 
-  const handleDonate = () => {
-    setHelperMessage('Ready for checkout: we will route this selection to our secure Stripe flow next.')
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  useEffect(() => {
+    if (searchParams?.get('success') === '1') {
+      setHelperMessage('Thank you! Your donation was received. A receipt is on its way to your email.')
+    } else if (searchParams?.get('canceled') === '1') {
+      setHelperMessage('Donation canceled. You can adjust the amount or try again anytime.')
+    }
+  }, [searchParams])
+
+  const handleDonate = async () => {
+    setErrorMessage(null)
+    setHelperMessage(null)
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/stripe/donate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: donationAmount,
+          currency,
+          frequency,
+          dedicate,
+          honorName: dedicate ? honorName.trim() : '',
+        }),
+      })
+
+      const data = (await response.json().catch(() => ({}))) as { url?: string; error?: string }
+      if (!response.ok || !data.url) {
+        throw new Error(data.error ?? 'Unable to start checkout. Please try again.')
+      }
+
+      window.location.href = data.url
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -267,12 +307,13 @@ export function DonatePageClient() {
               </div>
 
               <button
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#eb3f69] px-6 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#d42f59]"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#eb3f69] px-6 py-3 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#d42f59] disabled:cursor-not-allowed disabled:opacity-80"
+                disabled={isSubmitting}
                 onClick={handleDonate}
                 type="button"
               >
-                Donate {formattedAmount}
-                <ArrowRight className="h-4 w-4" />
+                {isSubmitting ? 'Redirecting…' : `Donate ${formattedAmount}`}
+                {!isSubmitting ? <ArrowRight className="h-4 w-4" /> : null}
               </button>
 
               <div className="mt-3 flex items-start gap-2 text-xs text-slate-600">
@@ -283,6 +324,7 @@ export function DonatePageClient() {
                 </p>
               </div>
               {helperMessage ? <p className="mt-3 text-sm font-semibold text-[#eb3f69]">{helperMessage}</p> : null}
+              {errorMessage ? <p className="mt-3 text-sm font-semibold text-red-600">{errorMessage}</p> : null}
             </div>
           </div>
         </div>
