@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import { DonatePageClient } from './DonatePageClient'
 
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 }
 
 export default function DonatePage() {
-  return <DonatePageClient />
+  return (
+    <Suspense fallback={null}>
+      <DonatePageClient />
+    </Suspense>
+  )
 }
