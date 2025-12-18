@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 
 import { Backpack, BookOpen, Users } from 'lucide-react'
 
@@ -109,7 +109,7 @@ export function ImpactStatsSection({ impactStats }: Props) {
   const cards: Array<{
     key: keyof ImpactStats
     title: string
-    icon: JSX.Element
+    icon: ReactNode
     border: string
     bg: string
     barWidth: string
