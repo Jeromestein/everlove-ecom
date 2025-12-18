@@ -6,7 +6,7 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 const stripe =
   stripeSecretKey &&
   new Stripe(stripeSecretKey, {
-    apiVersion: '2024-11-20',
+    apiVersion: '2025-08-27.basil',
   })
 
 type Body = {
